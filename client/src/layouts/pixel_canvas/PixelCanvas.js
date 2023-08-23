@@ -2,7 +2,7 @@ import "./PixelCanvas.css";
 
 import { useState, useRef, useEffect } from "react";
 
-export default function PixelCanvas ({ pixelSize }) {
+export default function PixelCanvas ({ pixelSize, pixelScale }) {
     const [position, setPosition] = useState({
         x: 0,
         y: 0,
@@ -14,8 +14,8 @@ export default function PixelCanvas ({ pixelSize }) {
     function getPosition (event) {
         const { x, y } = hoverCanvasRef.current.getBoundingClientRect();
         const { clientX, clientY } = event;
-        const positionX = Math.floor((clientX - x) / 10);
-        const positionY = Math.floor((clientY - y) / 10);
+        const positionX = Math.floor((clientX - x) / pixelScale);
+        const positionY = Math.floor((clientY - y) / pixelScale);
 
         setPosition({
             x: positionX,
@@ -27,12 +27,12 @@ export default function PixelCanvas ({ pixelSize }) {
         const hoverCanvasContext = hoverCanvasRef.current.getContext("2d");
         const { x, y } = position;
 
-        hoverCanvasContext.clearRect(0, 0, pixelSize * 10, pixelSize * 10);
+        hoverCanvasContext.clearRect(0, 0, pixelSize * pixelScale, pixelSize * pixelScale);
         
         hoverCanvasContext.fillStyle = "#dddddd";
         hoverCanvasContext.globalAlpha = "0.5";
 
-        hoverCanvasContext.fillRect(x * 10, y * 10, 10, 10);
+        hoverCanvasContext.fillRect(x * pixelScale, y * pixelScale, pixelScale, pixelScale);
     }
 
     useEffect(() => {
@@ -47,8 +47,9 @@ export default function PixelCanvas ({ pixelSize }) {
             <canvas
                 ref={ drawCanvasRef }
                 id="draw-canvas"
-                width={ pixelSize * 10 }
-                height={ pixelSize * 10 }
+                width={ pixelSize * pixelScale }
+                height={ pixelSize * pixelScale }
+                style={{ transform: `scale(${ pixelScale })` }}
             >
             </canvas>
             <canvas
@@ -58,8 +59,9 @@ export default function PixelCanvas ({ pixelSize }) {
                 }}
                 ref={ hoverCanvasRef }
                 id="hover-canvas"
-                width={ pixelSize * 10 }
-                height={ pixelSize * 10 }
+                width={ pixelSize * pixelScale }
+                height={ pixelSize * pixelScale }
+                style={{ transform: `scale(${ pixelScale })` }}
             >
             </canvas>
         </div>
