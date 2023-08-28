@@ -8,14 +8,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #222222;
 }
 
 #draw-canvas {
     z-index: 1;
+    background-color: #222222;
 }
 
 #hover-canvas {
     z-index: 2;
+    background-color: transparent;
 }
