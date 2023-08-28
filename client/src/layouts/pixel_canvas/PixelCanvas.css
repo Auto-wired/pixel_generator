@@ -4,10 +4,16 @@
     position: relative;
 }
 
-#draw-canvas, #hover-canvas {
+#draw-canvas, #hover-canvas, #result-canvas {
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+#result-canvas {
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    background-color: transparent;
 }
 
 #draw-canvas {

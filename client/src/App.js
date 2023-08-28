@@ -7,6 +7,10 @@ import PixelCanvas from "./layouts/pixel_canvas/PixelCanvas.js";
 export default function App () {
     const [pixelSize, setPixelSize] = useState(32);
     const [pixelScale, setPixelScale] = useState(1);
+    const [pixelColor, setPixelColor] = useState({
+        left: "#ffffff",
+        right: "#000000",
+    });
     const [currentPixelPosition, setCurrentPixelPosition] = useState({
         x: null,
         y: null,
@@ -34,6 +38,7 @@ export default function App () {
                 <PixelCanvas
                     pixelSize={ pixelSize }
                     pixelScale={ pixelScale }
+                    pixelColor={ pixelColor }
                     setCurrentPixelPosition={ setCurrentPixelPosition }
                 >
                 </PixelCanvas>
