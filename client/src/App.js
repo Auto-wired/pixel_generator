@@ -5,7 +5,7 @@ import { useState } from "react";
 import PixelCanvas from "./layouts/pixel_canvas/PixelCanvas.js";
 
 export default function App () {
-    const [pixelSize, setPixelSize] = useState(32);
+    const [pixelSize, setPixelSize] = useState(128);
     const [pixelScale, setPixelScale] = useState(1);
     const [pixelColor, setPixelColor] = useState({
         left: "#ffffff",

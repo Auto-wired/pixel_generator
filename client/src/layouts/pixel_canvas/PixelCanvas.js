@@ -6,6 +6,10 @@ export default function PixelCanvas ({ pixelSize, pixelScale, pixelColor, setCur
     const [resultCanvasContext, setResultCanvasContext] = useState(null);
     const [drawCanvasContext, setDrawCanvasContext] = useState(null);
     const [hoverCanvasContext, setHoverCanvasContext] = useState(null);
+    const [lastPixelPosition, setLastPixelPosition] = useState({
+        x: null,
+        y: null,
+    });
 
     const resultCanvasRef = useRef(null);
     const drawCanvasRef = useRef(null);
@@ -51,10 +55,37 @@ export default function PixelCanvas ({ pixelSize, pixelScale, pixelColor, setCur
 
         resultCanvasContext.fillRect(positionX, positionY, 1, 1);
         drawCanvasContext.fillRect(positionX * pixelScale, positionY * pixelScale, pixelScale, pixelScale);
+
+        setLastPixelPosition({
+            x: positionX,
+            y: positionY,
+        });
+
+        if (event.type === "mousedown") {
+            return;
+        }
+
+        drawAssistancePixel(positionX, positionY, currentColor);
     }
 
-    function drawAssistancePixel () {
+    function drawAssistancePixel (currentX, currentY, currentColor) {
+        let drawX = currentX - lastPixelPosition.x;
+        let drawY = currentY - lastPixelPosition.y;
 
+        if (!lastPixelPosition.x || !lastPixelPosition.y) {
+            return;
+        }
+
+        while (drawX !== 0 || drawY !== 0) {
+            drawX += drawX > 0 ? -1 : drawX < 0 ? 1 : 0;
+            drawY += drawY > 0 ? -1 : drawY < 0 ? 1 : 0;
+
+            resultCanvasContext.fillStyle = currentColor;
+            drawCanvasContext.fillStyle = currentColor;
+
+            resultCanvasContext.fillRect(lastPixelPosition.x + drawX, lastPixelPosition.y + drawY, 1, 1);
+            drawCanvasContext.fillRect((lastPixelPosition.x + drawX) * pixelScale, (lastPixelPosition.y + drawY) * pixelScale, pixelScale, pixelScale);
+        }
     }
 
     useEffect(() => {
