@@ -1,0 +1,11 @@
+.pixel-button {
+    border: none;
+    transition: all 0.2s;
+    color: #ffffff;
+    background-color: #111111;
+}
+
+.pixel-button:hover {
+    opacity: 0.8;
+    box-shadow: 0px 0px 2px #111111;
+}

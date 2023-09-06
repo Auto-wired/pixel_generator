@@ -2,6 +2,8 @@ import "./PixelDownload.css";
 
 import { useState, useRef, useEffect } from "react";
 
+import PixelButton from "../../components/pixel_button/PixelButton.js";
+import PixelInput from "../../components/pixel_input/PixelInput.js";
 import PixelModal from "../../components/pixel_modal/PixelModal.js";
 
 export default function PixelDownload ({ resultCanvasRef }) {
@@ -11,7 +13,7 @@ export default function PixelDownload ({ resultCanvasRef }) {
     const fileNameInputRef = useRef(null);
 
     function download () {
-        if (fileName.length === 0) {
+        if (!fileName) {
             fileNameInputRef.current.focus();
 
             alert("파일 이름을 입력해주세요.");
@@ -46,27 +48,23 @@ export default function PixelDownload ({ resultCanvasRef }) {
                 isOpen={ isOpen }
                 setIsOpen={ setIsOpen }
             >
+                <p id="pixel-download-title">Download</p>
                 <div id="pixel-download">
-                    <input
-                        ref={ fileNameInputRef }
-                        onInput={(e) => {
-                            setFileName(e.target.value);
-                        }}
-                        value={ fileName }
-                        id="file-name-input"
-                        autoComplete="off"
+                    <PixelInput
+                        pixelInputValue={ fileName }
+                        pixelInputRef={ fileNameInputRef }
+                        setPixelInputValue={ setFileName }
+                        width={ 180 }
+                        height={ 32 }
                     >
-                    </input>
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-
-                            download();
-                        }}
-                        id="download-button"
+                    </PixelInput>
+                    <PixelButton
+                        width={ 80 }
+                        height={ 32 }
+                        onClickEvent={ download }
                     >
                         <p>Download</p>
-                    </button>
+                    </PixelButton>
                 </div>
             </PixelModal>
         </button>

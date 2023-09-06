@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 
 import PixelCanvas from "./layouts/pixel_canvas/PixelCanvas.js";
 import PixelDownload from "./layouts/pixel_download/PixelDownload.js";
+import PixelSize from "./layouts/pixel_size/PixelSize.js";
 
 export default function App () {
     const [pixelSize, setPixelSize] = useState(64);
@@ -51,6 +52,11 @@ export default function App () {
                 <p>X: { currentPixelPosition.x }</p>
                 <p>Y: { currentPixelPosition.y }</p>
                 <p>Scale: { pixelScale }</p>
+                <PixelSize
+                    pixelSize={ pixelSize }
+                    setPixelSize={ setPixelSize }
+                >
+                </PixelSize>
                 <PixelDownload resultCanvasRef={ resultCanvasRef }></PixelDownload>
             </div>
         </>

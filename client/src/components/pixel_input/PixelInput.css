@@ -1,0 +1,9 @@
+.pixel-input {
+    padding: 8px;
+    border: 1px solid #111111;
+    transition: all 0.2s;
+}
+
+.pixel-input:focus {
+    box-shadow: 0px 0px 2px #111111;
+}

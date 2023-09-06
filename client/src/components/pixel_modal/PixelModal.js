@@ -15,8 +15,8 @@ export default function PixelModal ({ isOpen, setIsOpen, children }) {
                 &&
                 <div className="pixel-modal">
                     <div
-                        onClick={(e) => {
-                            e.stopPropagation();
+                        onClick={(event) => {
+                            event.stopPropagation();
 
                             setIsOpen(false);
                         }}
@@ -24,16 +24,19 @@ export default function PixelModal ({ isOpen, setIsOpen, children }) {
                     >
                     </div>
                     <div className="modal-content">
+                        <div className="modal-title">
+                            { children[0] }
+                        </div>
                         <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                
+                            onClick={(event) => {
+                                event.stopPropagation();
+
                                 setIsOpen(false);
                             }}
                             className="close-button"
                         >
                         </button>
-                        { children }
+                        { children[1] }
                     </div>
                 </div>
             }

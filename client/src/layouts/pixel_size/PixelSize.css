@@ -1,20 +1,20 @@
-#pixel-download-container {
+#pixel-size-container {
     width: 64px;
     height: 64px;
     margin: 10px;
     border: none;
     box-shadow: 0px 0px 2px #ffffff;
-    background-image: url("../../assets/images/download.png");
+    background-image: url("../../assets/images/size.png");
     background-size: cover;
     background-color: #111111;
 }
 
-#pixel-download-title {
+#pixel-size-title {
     font-size: 16px;
     font-weight: bold;
 }
 
-#pixel-download {
+#pixel-size {
     width: 300px;
     height: 100px;
     display: flex;
