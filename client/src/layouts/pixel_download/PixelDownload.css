@@ -1,0 +1,46 @@
+#pixel-download-container {
+    width: 64px;
+    height: 64px;
+    margin: 20px;
+    border: none;
+    box-shadow: 0px 0px 2px #ffffff;
+    background-image: url("../../assets/images/download.png");
+    background-size: cover;
+    background-color: #111111;
+}
+
+#pixel-download {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+#file-name-input {
+    width: 180px;
+    height: 32px;
+    padding: 8px;
+    border: 1px solid #111111;
+}
+
+#file-name-input:focus {
+    box-shadow: 0px 0px 2px #111111;
+}
+
+#download-button {
+    width: 80px;
+    height: 32px;
+    border: none;
+    transition: all 0.2s;
+    color: #ffffff;
+    background-color: #111111;
+}
+
+#download-button:hover {
+    opacity: 0.8;
+    box-shadow: 0px 0px 2px #111111;
+}

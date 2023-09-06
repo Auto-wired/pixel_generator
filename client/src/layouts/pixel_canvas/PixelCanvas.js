@@ -2,7 +2,7 @@ import "./PixelCanvas.css";
 
 import { useState, useRef, useEffect } from "react";
 
-export default function PixelCanvas ({ pixelSize, pixelScale, pixelColor, setCurrentPixelPosition }) {
+export default function PixelCanvas ({ pixelSize, pixelScale, pixelColor, resultCanvasRef, setCurrentPixelPosition }) {
     const [resultCanvasContext, setResultCanvasContext] = useState(null);
     const [drawCanvasContext, setDrawCanvasContext] = useState(null);
     const [hoverCanvasContext, setHoverCanvasContext] = useState(null);
@@ -11,7 +11,6 @@ export default function PixelCanvas ({ pixelSize, pixelScale, pixelColor, setCur
         y: null,
     });
 
-    const resultCanvasRef = useRef(null);
     const drawCanvasRef = useRef(null);
     const hoverCanvasRef = useRef(null);
 
@@ -116,8 +115,6 @@ export default function PixelCanvas ({ pixelSize, pixelScale, pixelColor, setCur
                 drawCanvasContext.fillRect(column * pixelScale, row * pixelScale, pixelScale, pixelScale);
             }
         }
-
-        // drawCanvasContext.drawImage(resultCanvasRef.current, 0, 0);
     }, [pixelScale]);
 
     return (

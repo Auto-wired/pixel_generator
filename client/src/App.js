@@ -1,11 +1,12 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import PixelCanvas from "./layouts/pixel_canvas/PixelCanvas.js";
+import PixelDownload from "./layouts/pixel_download/PixelDownload.js";
 
 export default function App () {
-    const [pixelSize, setPixelSize] = useState(128);
+    const [pixelSize, setPixelSize] = useState(64);
     const [pixelScale, setPixelScale] = useState(1);
     const [pixelColor, setPixelColor] = useState({
         left: "#ffffff",
@@ -15,6 +16,8 @@ export default function App () {
         x: null,
         y: null,
     });
+
+    const resultCanvasRef = useRef(null);
 
     function modifyPixelScale (event) {
         const increaseValue = event.deltaY > 0 ? -1 : 1;
@@ -39,6 +42,7 @@ export default function App () {
                     pixelSize={ pixelSize }
                     pixelScale={ pixelScale }
                     pixelColor={ pixelColor }
+                    resultCanvasRef={ resultCanvasRef }
                     setCurrentPixelPosition={ setCurrentPixelPosition }
                 >
                 </PixelCanvas>
@@ -47,6 +51,7 @@ export default function App () {
                 <p>X: { currentPixelPosition.x }</p>
                 <p>Y: { currentPixelPosition.y }</p>
                 <p>Scale: { pixelScale }</p>
+                <PixelDownload resultCanvasRef={ resultCanvasRef }></PixelDownload>
             </div>
         </>
     );

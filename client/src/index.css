@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
+    user-select: none;
+    font-size: 12px;
 }
 
 html, body, #root {
@@ -14,4 +17,8 @@ html, body, #root {
 
 #root {
     display: flex;
+}
+
+button {
+    cursor: pointer;
 }
