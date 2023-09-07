@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 
 import PixelCanvas from "./layouts/pixel_canvas/PixelCanvas.js";
 import PixelDownload from "./layouts/pixel_download/PixelDownload.js";
+import PixelInfo from "./layouts/pixel_info/PixelInfo.js";
 import PixelSize from "./layouts/pixel_size/PixelSize.js";
 
 export default function App () {
@@ -32,7 +33,8 @@ export default function App () {
 
     return (
         <>
-            <div className="side"></div>
+            <div className="side">
+            </div>
             <div
                 onWheel={(event) => {
                     modifyPixelScale(event);
@@ -49,15 +51,18 @@ export default function App () {
                 </PixelCanvas>
             </div>
             <div className="side">
-                <p>X: { currentPixelPosition.x }</p>
-                <p>Y: { currentPixelPosition.y }</p>
-                <p>Scale: { pixelScale }</p>
                 <PixelSize
                     pixelSize={ pixelSize }
                     setPixelSize={ setPixelSize }
                 >
                 </PixelSize>
                 <PixelDownload resultCanvasRef={ resultCanvasRef }></PixelDownload>
+                <PixelInfo
+                    pixelSize={ pixelSize }
+                    pixelScale={ pixelScale }
+                    currentPosition={ currentPixelPosition }
+                >
+                </PixelInfo>
             </div>
         </>
     );
